@@ -16,7 +16,7 @@ def on_message(client, userdata, message):
 signal.signal(signal.SIGINT, signal_handler)
 
 clientPublish = mqtt.Client("TestPublish")
-clientPublish.connect("test.mosquitto.org")
+clientPublish.connect("localhost")
 
 
 test = "lol"
