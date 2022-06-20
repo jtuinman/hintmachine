@@ -14,7 +14,7 @@ def on_message(client, userdata, message):
 
 signal.signal(signal.SIGINT, signal_handler)
 clientSubscribe = mqtt.Client("PlantReader")
-clientSubscribe.connect("localhost") 
+clientSubscribe.connect("127.0.0.1") 
 
 clientSubscribe.loop_start()
 clientSubscribe.unsubscribe("#")
