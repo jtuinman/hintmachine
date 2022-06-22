@@ -22,5 +22,5 @@ clientSubscribe.subscribe("SOUNDMACHINE/+")
 
 clientSubscribe.on_message = on_message 
  
-time.sleep(60)
-clientSubscribe.loop_stop()
+#time.sleep(60)
+#clientSubscribe.loop_stop()
