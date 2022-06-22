@@ -13,12 +13,12 @@ def on_message(client, userdata, message):
 
 
 signal.signal(signal.SIGINT, signal_handler)
-clientSubscribe = mqtt.Client("PlantReader")
+clientSubscribe = mqtt.Client("Mixer")
 clientSubscribe.connect("localhost") 
 
 clientSubscribe.loop_start()
 clientSubscribe.unsubscribe("#")
-clientSubscribe.subscribe("PLANTNET/+")
+clientSubscribe.subscribe("SOUNDMACHINE/+")
 
 clientSubscribe.on_message = on_message 
  
