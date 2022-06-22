@@ -25,7 +25,7 @@ message = {
         }
 
 jsonDump = json.dumps(message)
-topic="PLANTNET/LIGHT"
+topic="SOUNDMACHINE/MUSIC"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
@@ -35,7 +35,7 @@ message = {
         }
 
 jsonDump = json.dumps(message)
-topic="PLANTNET/LIGHT"
+topic="SOUNDMACHINE/HINTS"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
