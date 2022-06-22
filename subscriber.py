@@ -14,7 +14,7 @@ def on_message(client, userdata, message):
 
 signal.signal(signal.SIGINT, signal_handler)
 clientSubscribe = mqtt.Client("Mixer")
-clientSubscribe.connect("localhost") 
+clientSubscribe.connect("192.168.178.30") 
 
 clientSubscribe.loop_start()
 clientSubscribe.unsubscribe("#")
