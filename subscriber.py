@@ -16,11 +16,11 @@ signal.signal(signal.SIGINT, signal_handler)
 clientSubscribe = mqtt.Client("Mixer")
 clientSubscribe.connect("192.168.178.30") 
 
-clientSubscribe.loop_start()
+#clientSubscribe.loop_start()
 clientSubscribe.unsubscribe("#")
 clientSubscribe.subscribe("SOUNDMACHINE/+")
 
 clientSubscribe.on_message = on_message 
  
-time.sleep(60)
-clientSubscribe.loop_stop()
+#time.sleep(60)
+#clientSubscribe.loop_stop()
