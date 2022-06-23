@@ -34,7 +34,6 @@ def stop_music():
 def get_sounds_from_folder(dir):
     return sorted([f for f in os.listdir(dir) if re.search(r'.+\.(wav|ogg|mp3)$', f)])
 
-play_music(sounddir + config.get("Escape","music_state_state1"))
 
 ## Init stuff from here
 configfilename = "sound.conf"
