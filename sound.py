@@ -2,6 +2,7 @@ import configparser
 import pygame
 import atexit
 import os
+import sys
 
 def clean():
     pygame.mixer.quit()
@@ -11,7 +12,12 @@ def clean():
 configfilename = "sound.conf"
 configfile = (os.path.join(os.getcwd(), configfilename))
 config = configparser.ConfigParser()
-
+try:
+    with open(configfile,'r') as configfilefp:
+        config.read_file(configfilefp)
+except:
+    print("Could not read " + configfile)
+    sys.exit()
 
 if not pygame.mixer.get_init():
     #logger.info("Now initalizing mixer")
