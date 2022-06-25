@@ -45,6 +45,7 @@ def play_sound(soundpath):
         if pygame.mixer.music.get_busy():
             if(pygame.mixer.music.get_volume() > 0.2):
                 pygame.mixer.music.set_volume(0.2)
+                logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())) + " seconds.")
             else:
                 pygame.mixer.music.set_volume(0.0)
         last_soundpath = soundpath
