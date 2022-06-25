@@ -35,7 +35,7 @@ def play_sound(soundpath):
             logger.error("File requested was of type: " + soundpath[-3:] + " and might not work!")
 
 
-        ## Calculate length first. This takes a few seconds on the c.h.i.p.
+        ## Calculate length first. This takes a few seconds on the pi.
         hint = pygame.mixer.Sound(soundpath)
         hint.set_volume(float(sound_volume) / 100)
         length = hint.get_length()
@@ -106,6 +106,6 @@ music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
 pygame.mixer.music.set_volume(music_volume / 100)
 
-##play_music(sounddir + config.get("Escape","music_state_state1"))
+play_music(sounddir + config.get("Escape","music_state_state1"))
 filename = "begin_bij_de_witte_pin.ogg"
-play_sound(sounddir + filename)
+##play_sound(sounddir + filename)
