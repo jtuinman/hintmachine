@@ -50,6 +50,7 @@ def play_sound(soundpath):
                 pygame.mixer.music.set_volume(0.0)
         last_soundpath = soundpath
         sound_channel = hint.play()
+        logger.info("Playing "+ soundpath)
         if pygame.mixer.music.get_busy():
             time.sleep(length +1)
             pygame.mixer.music.set_volume(float(music_volume) / 100)
