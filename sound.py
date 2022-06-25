@@ -1,14 +1,62 @@
 import configparser
+import logging
 import pygame
 import atexit
 import os
 import sys
 import time
 import re
+from sound_library import SoundLoggingHandler
 
 def clean():
     pygame.mixer.quit()
-  
+
+## Logger setup
+logger = logging.getLogger(__name__)
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
+entriesHandler = SoundLoggingHandler()
+logger.addHandler(logging.StreamHandler())
+logger.addHandler(entriesHandler)
+logger.setLevel(logging.INFO)
+
+sound_channel = None
+last_soundpath = ""
+def play_sound(soundpath):
+    logger.info("Got request to play "+ soundpath)
+    global sound_channel, last_soundpath
+    try:
+        ## Kill ALL current sounds except for music
+        pygame.mixer.stop()
+
+        if not os.path.exists(soundpath):
+            logger.error(soundpath + " does not exist")
+
+        if soundpath[-3:] != "ogg":
+            logger.error("File requested was of type: " + soundpath[-3:] + " and might not work!")
+
+
+        ## Calculate length first. This takes a few seconds on the c.h.i.p.
+        hint = pygame.mixer.Sound(soundpath)
+        hint.set_volume(float(sound_volume) / 100)
+        length = hint.get_length()
+        logger.info("Length of sound bit is "+ str(int(length)) + " seconds.")
+
+        ## Before playing, lower the volume of the music
+        if pygame.mixer.music.get_busy():
+            if(pygame.mixer.music.get_volume() > 0.2):
+                pygame.mixer.music.set_volume(0.2)
+            else:
+                pygame.mixer.music.set_volume(0.0)
+        last_soundpath = soundpath
+        sound_channel = hint.play()
+        if pygame.mixer.music.get_busy():
+            time.sleep(length +1)
+            pygame.mixer.music.set_volume(float(music_volume) / 100)
+
+    except Exception as e:
+        logger.error("Tried to play sound file but got error: " + str(e))
+    logger.info("Done with " + soundpath)
+
 ## Background music, changes for each scene
 ## Note that the fade blocks the state_machine from ansering requests, so in theory if players are fast they
 ## will need to pull triggers multiple times
