@@ -110,5 +110,5 @@ pygame.mixer.music.set_volume(music_volume / 100)
 
 #play_music(sounddir + config.get("Escape","music_state_state1"))
 #time.sleep(3)
-filename = "begin_bij_de_witte_pin.ogg"
+filename = "state1.mp3"
 play_sound(sounddir + filename)
