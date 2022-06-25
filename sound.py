@@ -49,7 +49,8 @@ def play_sound(soundpath):
             else:
                 pygame.mixer.music.set_volume(0.0)
         last_soundpath = soundpath
-        sound_channel = hint.play()
+        #sound_channel = hint.play()
+        pygame.mixer.Channel(0).play(hint)
         logger.info("Playing "+ soundpath)
         if pygame.mixer.music.get_busy():
             time.sleep(length +1)
@@ -110,5 +111,6 @@ pygame.mixer.music.set_volume(music_volume / 100)
 
 #play_music(sounddir + config.get("Escape","music_state_state1"))
 #time.sleep(3)
-filename = "state1.mp3"
+filename = "hint1.ogg"
 play_sound(sounddir + filename)
+
