@@ -8,6 +8,13 @@ import time
 import re
 from sound_library import SoundLoggingHandler
 
+## Prereqs: python 3
+##sudo apt install git
+##sudo apt install pip
+##python3 -m pip install -U pygame --user
+##sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0
+##sudo bash -c 'echo -e " defaults.pcm.card 1 \ndefaults.ctl.card 1" > /etc/asound.conf'
+
 def clean():
     pygame.mixer.quit()
 
@@ -40,17 +47,17 @@ def play_sound(soundpath):
         hint.set_volume(float(sound_volume) / 100)
         length = hint.get_length()
         logger.info("Length of sound bit is "+ str(int(length)) + " seconds.")
+        hint.get_volume()
 
         ## Before playing, lower the volume of the music
         if pygame.mixer.music.get_busy():
             if(pygame.mixer.music.get_volume() > 0.2):
                 pygame.mixer.music.set_volume(0.2)
-                logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())) + " seconds.")
+                logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())))
             else:
                 pygame.mixer.music.set_volume(0.0)
         last_soundpath = soundpath
-        #sound_channel = hint.play()
-        pygame.mixer.Channel(1).play(hint)
+        sound_channel = hint.play()
         logger.info("Playing "+ soundpath)
         if pygame.mixer.music.get_busy():
             time.sleep(length +1)
@@ -109,8 +116,8 @@ music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
 pygame.mixer.music.set_volume(music_volume / 100)
 
-#play_music(sounddir + config.get("Escape","music_state_state1"))
+play_music(sounddir + config.get("Escape","music_state_state1"))
 #time.sleep(3)
-filename = "hint1.ogg"
-play_sound(sounddir + filename)
+#filename = "hint1.ogg"
+#play_sound(sounddir + filename)
 
