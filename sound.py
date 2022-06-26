@@ -30,9 +30,9 @@ hint = None
 def play_hint(soundpath):
     stop_hint()
     global hint
-    pygame.mixer.music.load(soundpath)
-    hint = soundpath
-    pygame.mixer.music.set_volume(float(music_volume) / 100)
+    ##pygame.mixer.music.load(soundpath)
+    ##hint = soundpath
+    pygame.mixer.music.set_volume(float(sound_volume) / 100)
     pygame.mixer.Channel(1).play(pygame.mixer.Sound(soundpath))
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
