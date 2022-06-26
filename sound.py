@@ -105,7 +105,7 @@ if not pygame.mixer.get_init():
     pygame.mixer.pre_init(44100, -16, 2, 2048)
     pygame.mixer.init()  
 
-## When CTRL-Cing python script, make sure that the mixer and pins are released
+## When CTRL-Cing python script, make sure that the mixer is released
 atexit.register(clean)
 
 sounddir = config.get("Escape", "sounddir") + "/"
