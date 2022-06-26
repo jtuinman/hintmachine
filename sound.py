@@ -26,40 +26,6 @@ logger.addHandler(logging.StreamHandler())
 logger.addHandler(entriesHandler)
 logger.setLevel(logging.INFO)
 
-hint = None
-def play_hint(soundpath):
-    stop_hint()
-    global hint
-    #pygame.mixer.Channel(1).play(pygame.mixer.Sound(soundpath))
-    ## Calculate length first. This takes a few seconds on the pi.
-    hint = pygame.mixer.Sound(soundpath)
-    hint.set_volume(float(sound_volume) / 100)
-    length = hint.get_length()
-    logger.info("Length of sound bit is "+ str(int(length)) + " seconds.")
-    hint.get_volume()
-
-## Before playing, lower the volume of the music
-    if pygame.mixer.music.get_busy():
-        if(pygame.mixer.music.get_volume() > 0.2):
-            pygame.mixer.music.set_volume(0.2)
-            logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())))
-        else:
-            pygame.mixer.music.set_volume(0.0)
-    pygame.mixer.Channel(2).play(hint)
-
-    logger.info("Playing "+ soundpath)
-    if pygame.mixer.music.get_busy():
-        time.sleep(length +1)
-        pygame.mixer.music.set_volume(float(music_volume) / 100)
-    
-def stop_hint():
-    fade = config.getint("Escape","fadeout")
-    if pygame.mixer.music.get_busy():
-        pygame.mixer.music.fadeout(fade * 1000)
-        time.sleep(fade)
-    global hint
-    hint = None
-
 sound_channel = None
 last_soundpath = ""
 def play_sound(soundpath):
