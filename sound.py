@@ -33,7 +33,7 @@ def play_hint(soundpath):
     pygame.mixer.music.load(soundpath)
     hint = soundpath
     pygame.mixer.music.set_volume(float(music_volume) / 100)
-    pygame.mixer.music.Channel(1).play(-1)
+    pygame.mixer.Channel(1).play(-1)
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
