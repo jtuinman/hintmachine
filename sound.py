@@ -30,13 +30,17 @@ hint = None
 def play_hint(soundpath):
     stop_hint()
     global hint
-    pygame.mixer.music.load(soundpath)
-    hint = soundpath
-    pygame.mixer.music.set_volume(float(sound_volume) / 100)
-    pygame.mixer.music.play(0)
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)  
+    
     #pygame.mixer.Channel(1).play(pygame.mixer.Sound(soundpath))
+
+    ## Calculate length first. This takes a few seconds on the pi.
+    hint = pygame.mixer.Sound(soundpath)
+    hint.set_volume(float(sound_volume) / 100)
+    length = hint.get_length()
+    logger.info("Length of sound bit is "+ str(int(length)) + " seconds.")
+    hint.get_volume()
+    pygame.mixer.Channel(2).play(hint)
+
     
 def stop_hint():
     fade = config.getint("Escape","fadeout")
