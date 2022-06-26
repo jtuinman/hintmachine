@@ -30,9 +30,7 @@ hint = None
 def play_hint(soundpath):
     stop_hint()
     global hint
-    
     #pygame.mixer.Channel(1).play(pygame.mixer.Sound(soundpath))
-
     ## Calculate length first. This takes a few seconds on the pi.
     hint = pygame.mixer.Sound(soundpath)
     hint.set_volume(float(sound_volume) / 100)
