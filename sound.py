@@ -26,6 +26,25 @@ logger.addHandler(logging.StreamHandler())
 logger.addHandler(entriesHandler)
 logger.setLevel(logging.INFO)
 
+hint = None
+def play_hint(soundpath):
+    stop_hint()
+    global hint
+    pygame.mixer.music.load(soundpath)
+    hint = soundpath
+    pygame.mixer.music.set_volume(float(music_volume) / 100)
+    pygame.mixer.music.Channel(1).play(-1)
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
+def stop_hint():
+    fade = config.getint("Escape","fadeout")
+    if pygame.mixer.music.get_busy():
+        pygame.mixer.music.fadeout(fade * 1000)
+        time.sleep(fade)
+    global hint
+    hint = None
+
 sound_channel = None
 last_soundpath = ""
 def play_sound(soundpath):
@@ -117,8 +136,6 @@ sound_volume = config.getfloat("Escape", "sound_volume")
 pygame.mixer.music.set_volume(music_volume / 100)
 
 logger.info("Number of channels: " + str(pygame.mixer.get_num_channels()))
-play_music(sounddir + config.get("Escape","music_state_state1"))
-#time.sleep(3)
-#filename = "hint1.ogg"
-#play_sound(sounddir + filename)
+play_hint(sounddir + config.get("Escape","music_state_state1"))
+
 
