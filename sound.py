@@ -138,5 +138,5 @@ pygame.mixer.music.set_volume(music_volume / 100)
 
 logger.info("Number of channels: " + str(pygame.mixer.get_num_channels()))
 play_hint(sounddir + config.get("Escape","music_state_state1"))
-
+play_music(sounddir + config.get("Escape","music_state_state2"))
 
