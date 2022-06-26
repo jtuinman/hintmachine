@@ -34,13 +34,10 @@ def play_sound(soundpath):
     try:
         ## Kill ALL current sounds except for music
         pygame.mixer.stop()
-
         if not os.path.exists(soundpath):
             logger.error(soundpath + " does not exist")
-
         if soundpath[-3:] != "ogg":
             logger.error("File requested was of type: " + soundpath[-3:] + " and might not work!")
-
 
         ## Calculate length first. This takes a few seconds on the pi.
         hint = pygame.mixer.Sound(soundpath)
@@ -118,5 +115,7 @@ pygame.mixer.music.set_volume(music_volume / 100)
 
 logger.info("Number of channels: " + str(pygame.mixer.get_num_channels()))
 
-play_music(sounddir + config.get("Escape","music_state_state2"))
+##If play_music is called first, the hint will play after.
+##If play_sound is called first, two are played together (as I would like.)
 play_sound(sounddir + config.get("Escape","music_state_state1"))
+play_music(sounddir + config.get("Escape","music_state_state2"))
