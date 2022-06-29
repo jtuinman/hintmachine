@@ -15,9 +15,9 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     print("received message: " ,str(message.payload.decode("utf-8")))
-    if message.topic == "SOUNDMACHINE/HINTS":
-        with open('home/pi/mqtt_update.txt', 'a+') as f:
-            f.write("received topic2")
+    #if message.topic == "SOUNDMACHINE/HINTS":
+    #    with open('home/pi/mqtt_update.txt', 'a+') as f:
+    #        f.write("received topic2")
 
 signal.signal(signal.SIGINT, signal_handler)
 
