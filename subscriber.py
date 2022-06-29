@@ -3,6 +3,7 @@ import time
 import signal
 import sys
 
+
 def signal_handler(sig, frame):
     client.loop_stop()
     print("Exiting")

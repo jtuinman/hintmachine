@@ -5,7 +5,7 @@ import sys
 import json
 
 def signal_handler(sig, frame):
-    clientSubscribe.loop_stop()
+    clientPublish.loop_stop()
     print("Exiting")
     sys.exit(0)
 
