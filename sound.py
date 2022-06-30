@@ -119,5 +119,5 @@ class soundsystem():
 
 ##If play_music is called first, the hint will play after.
 ##If play_sound is called first, two are played together (as I would like.)
-soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
-soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state2"))
+#soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
+#soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state2"))
