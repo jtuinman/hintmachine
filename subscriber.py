@@ -15,7 +15,9 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     print("received message: " ,str(message.payload.decode("utf-8")))
-    #if message.topic == "SOUNDMACHINE/HINTS":
+    if message.topic == "SOUNDMACHINE/HINTS":
+        soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
+
     #    with open('home/pi/mqtt_update.txt', 'a+') as f:
     #        f.write("received topic2")
 
