@@ -22,7 +22,8 @@ def on_message(client, userdata, message):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-broker_address = "192.168.178.30"  # Broker address
+#broker_address = "192.168.178.30"  # Broker address
+broker_address = "192.168.2.69"  # Broker address
 port = 1883  # Broker port
 # user = "yourUser"                    #Connection username
 # password = "yourPassword"            #Connection password
