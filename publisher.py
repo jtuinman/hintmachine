@@ -22,7 +22,6 @@ clientPublish.connect("192.168.2.69")
 test = "lol"
 musicName = "music_state_state2"
 message = {
-        "timestamp": test,
         "command": musicName
         }
 
@@ -34,7 +33,6 @@ print(jsonDump)
 test = "Ha!"
 soundName = "music_state_state1"
 message = {
-        "timestamp": test,
         "command": soundName
         }
 
