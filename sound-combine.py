@@ -8,9 +8,8 @@ import time
 import re
 from sound_library import SoundLoggingHandler
 import paho.mqtt.client as mqtt
-import time
 import signal
-import sys
+
 import json
 
 ## Prereqs: python 3
@@ -35,56 +34,24 @@ def clean():
 sound_channel = None
 last_soundpath = ""
 def play_sound(soundpath):
-    logger.info("Got request to play "+ soundpath)
-    global sound_channel, last_soundpath
-    try:
-        ## Kill ALL current sounds except for music
-        pygame.mixer.stop()
-        if not os.path.exists(soundpath):
-            logger.error(soundpath + " does not exist")
-        if soundpath[-3:] != "ogg":
-            logger.error("File requested was of type: " + soundpath[-3:] + " and might not work!")
-
-        ## Calculate length first. This takes a few seconds on the pi.
-        hint = pygame.mixer.Sound(soundpath)
-        hint.set_volume(float(sound_volume) / 100)
-        length = hint.get_length()
-        logger.info("Length of sound bit is "+ str(int(length)) + " seconds.")
-        hint.get_volume()
-
-        ## Before playing, lower the volume of the music
-        print("Busy")
-        print(pygame.mixer.music.get_busy())
-        if pygame.mixer.music.get_busy():
-            if(pygame.mixer.music.get_volume() > 0.1):
-                pygame.mixer.music.set_volume(0.1)
-                logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())))
-            else:
-                pygame.mixer.music.set_volume(0.0)
-        last_soundpath = soundpath
-        sound_channel = hint.play()
-        logger.info("Playing "+ soundpath)
-        if pygame.mixer.music.get_busy():
-            time.sleep(length +1)
-            pygame.mixer.music.set_volume(float(music_volume) / 100)
-
-    except Exception as e:
-        logger.error("Tried to play sound file but got error: " + str(e))
-    logger.info("Done with " + soundpath)
+    hint = pygame.mixer.Sound(soundpath)
+    hint.play()
 
 ## Background music, changes for each scene
 ## Note that the fade blocks the state_machine from ansering requests, so in theory if players are fast they
 ## will need to pull triggers multiple times
 music = None
 def play_music(soundpath):
-    stop_music()
-    global music
+    #stop_music()
+    #global music
+    #pygame.mixer.music.load(soundpath)
+    #music = soundpath
+    #pygame.mixer.music.set_volume(float(music_volume) / 100)
+    #pygame.mixer.music.play(-1)
+    #while pygame.mixer.music.get_busy():
+    #pygame.time.Clock().tick(10)
     pygame.mixer.music.load(soundpath)
-    music = soundpath
-    pygame.mixer.music.set_volume(float(music_volume) / 100)
     pygame.mixer.music.play(-1)
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
 
 def stop_music():
     fade = config.getint("Escape","fadeout")
@@ -144,8 +111,8 @@ def on_message(client, userdata, message):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-#broker_address = "192.168.178.30"  # Broker address
-broker_address = "192.168.2.69"  # Broker address
+broker_address = "192.168.178.30"  # Broker address
+#broker_address = "192.168.2.69"  # Broker address
 port = 1883  # Broker port
 # user = "yourUser"                    #Connection username
 # password = "yourPassword"            #Connection password
