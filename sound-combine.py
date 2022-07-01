@@ -135,12 +135,10 @@ def on_message(client, userdata, message):
     print("received message: " , message)
     jsonObject = json.loads(messageBody)
     print(jsonObject["command"])
+    if message.topic == "SOUNDMACHINE/HINTS":
+        play_sound(sounddir + config.get("Escape",jsonObject["command"]))
     if message.topic == "SOUNDMACHINE/MUSIC":
         play_music(sounddir + config.get("Escape",jsonObject["command"]))
-        #soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state2"))
-    if message.topic == "SOUNDMACHINE/HINTS":
-        play_music(sounddir + config.get("Escape",jsonObject["command"]))
-        #soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
 
 signal.signal(signal.SIGINT, signal_handler)
 
