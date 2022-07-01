@@ -20,7 +20,7 @@ clientPublish.connect("192.168.2.69")
 
 
 test = "lol"
-musicName = "music_state_state2"
+musicName = "music_state_state1"
 message = {
         "command": musicName
         }
@@ -30,7 +30,7 @@ topic="SOUNDMACHINE/MUSIC"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
-time.sleep(3)
+time.sleep(2)
 
 test = "Ha!"
 soundName = "music_state_state1"
