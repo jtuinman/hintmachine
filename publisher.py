@@ -26,7 +26,7 @@ message = {
         }
 
 jsonDump = json.dumps(message)
-topic="SOUNDMACHINE/HINTS"
+topic="SOUNDMACHINE/MUSIC"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
