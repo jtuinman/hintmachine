@@ -30,6 +30,8 @@ topic="SOUNDMACHINE/MUSIC"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
+time.sleep(3)
+
 test = "Ha!"
 soundName = "music_state_state1"
 message = {
