@@ -15,9 +15,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("SOUNDMACHINE/+") 
 
 def on_message(client, userdata, message):
-    message = str(message.payload.decode("utf-8"))
+    messageBody = str(message.payload.decode("utf-8"))
     print("received message: " , message)
-    jsonObject = json.loads(message)
+    jsonObject = json.loads(messageBody)
     print(jsonObject["command"])
     if message.topic == "SOUNDMACHINE/MUSIC":
         soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape",jsonObject["command"]))
