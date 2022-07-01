@@ -37,7 +37,7 @@ def play_sound(soundpath):
     hint = pygame.mixer.Sound(soundpath)
     length = hint.get_length()
     hint.set_volume(float(sound_volume) / 100)
-    logger.info("get_busy : " + pygame.mixer.music.get_busy())
+    logger.info("get_busy : " + str(pygame.mixer.music.get_busy()))
     if pygame.mixer.music.get_busy():
                 if(pygame.mixer.music.get_volume() > 0.1):
                     pygame.mixer.music.set_volume(0.1)
