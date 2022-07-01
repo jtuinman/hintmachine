@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 import signal
 import sys
+import json
 from sound import soundsystem
 
 def signal_handler(sig, frame):
@@ -14,11 +15,16 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("SOUNDMACHINE/+") 
 
 def on_message(client, userdata, message):
-    print("received message: " ,str(message.payload.decode("utf-8")))
+    message = str(message.payload.decode("utf-8"))
+    print("received message: " , message)
+    jsonObject = json.loads(message)
+    print(jsonObject["command"])
     if message.topic == "SOUNDMACHINE/MUSIC":
-        soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state2"))
+        soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape",jsonObject["command"]))
+        #soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state2"))
     if message.topic == "SOUNDMACHINE/HINTS":
-        soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
+        soundsystem.play_music(soundsystem.sounddir + soundsystem.config.get("Escape",jsonObject["command"]))
+        #soundsystem.play_sound(soundsystem.sounddir + soundsystem.config.get("Escape","music_state_state1"))
 
 signal.signal(signal.SIGINT, signal_handler)
 

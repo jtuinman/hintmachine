@@ -20,8 +20,10 @@ clientPublish.connect("192.168.2.69")
 
 
 test = "lol"
+musicName = "music_state_state2"
 message = {
-        "timestamp": test
+        "timestamp": test,
+        "command": musicName
         }
 
 jsonDump = json.dumps(message)
@@ -30,8 +32,10 @@ clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
 test = "Ha!"
+soundName = "music_state_state1"
 message = {
-        "timestamp": test
+        "timestamp": test,
+        "command": soundName
         }
 
 jsonDump = json.dumps(message)
