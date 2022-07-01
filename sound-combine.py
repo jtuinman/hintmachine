@@ -53,6 +53,8 @@ def play_sound(soundpath):
         hint.get_volume()
 
         ## Before playing, lower the volume of the music
+        print("Busy")
+        print(pygame.mixer.music.get_busy())
         if pygame.mixer.music.get_busy():
             if(pygame.mixer.music.get_volume() > 0.1):
                 pygame.mixer.music.set_volume(0.1)

@@ -43,5 +43,4 @@ topic="SOUNDMACHINE/HINTS"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
 
-time.sleep(10)
 clientPublish.loop_stop()
