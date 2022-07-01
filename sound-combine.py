@@ -35,7 +35,18 @@ sound_channel = None
 last_soundpath = ""
 def play_sound(soundpath):
     hint = pygame.mixer.Sound(soundpath)
+    length = hint.get_length()
+    hint.set_volume(float(sound_volume) / 100)
+    if pygame.mixer.music.get_busy():
+                if(pygame.mixer.music.get_volume() > 0.1):
+                    pygame.mixer.music.set_volume(0.1)
+                    logger.info("Volume down to "+ str(int(pygame.mixer.music.get_volume())))
+                else:
+                    pygame.mixer.music.set_volume(0.0)
     hint.play()
+    if pygame.mixer.music.get_busy():
+        time.sleep(length +1)
+        pygame.mixer.music.set_volume(float(music_volume) / 100)
 
 ## Background music, changes for each scene
 ## Note that the fade blocks the state_machine from ansering requests, so in theory if players are fast they
