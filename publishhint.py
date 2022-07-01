@@ -19,28 +19,16 @@ clientPublish = mqtt.Client("TestPublish")
 clientPublish.connect("192.168.178.30")
 
 
-test = "lol"
-musicName = "music_state_state2"
+
+test = "Ha!"
+soundName = "music_state_state1"
 message = {
-        "command": musicName
+        "command": soundName
         }
 
 jsonDump = json.dumps(message)
 topic="SOUNDMACHINE/HINTS"
 clientPublish.publish(topic, jsonDump)
 print(jsonDump)
-
-time.sleep(1)
-
-#test = "Ha!"
-#soundName = "music_state_state1"
-#message = {
-#        "command": soundName
-#        }
-
-#jsonDump = json.dumps(message)
-#topic="SOUNDMACHINE/HINTS"
-#clientPublish.publish(topic, jsonDump)
-#print(jsonDump)
 
 clientPublish.loop_stop()
