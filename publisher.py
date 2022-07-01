@@ -20,7 +20,7 @@ clientPublish.connect("192.168.178.30")
 
 
 test = "lol"
-musicName = "music_state_state3"
+musicName = "music_state_finalstate"
 message = {
         "command": musicName
         }
