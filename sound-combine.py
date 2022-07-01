@@ -54,7 +54,7 @@ def play_sound(soundpath):
 ## will need to pull triggers multiple times
 music = None
 def play_music(soundpath):
-    #stop_music()
+    stop_music()
     #global music
     #pygame.mixer.music.load(soundpath)
     #music = soundpath
