@@ -64,6 +64,7 @@ def play_music(soundpath):
     #pygame.time.Clock().tick(10)
     pygame.mixer.music.load(soundpath)
     pygame.mixer.music.play(-1)
+    logger.info("get_busy : " + str(pygame.mixer.music.get_busy()))
 
 def stop_music():
     fade = config.getint("Escape","fadeout")
