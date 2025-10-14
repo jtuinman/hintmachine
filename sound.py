@@ -14,7 +14,7 @@ from sound_library import SoundLoggingHandler
 ##python3 -m pip install -U pygame --user
 ##sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0
 ##sudo bash -c 'echo -e " defaults.pcm.card 1 \ndefaults.ctl.card 1" > /etc/asound.conf'
-## test
+
 ## Logger setup
 logger = logging.getLogger(__name__)
 logging.getLogger('werkzeug').setLevel(logging.ERROR)
